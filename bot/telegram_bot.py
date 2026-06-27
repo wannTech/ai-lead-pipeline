@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 load_dotenv()
 
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:8000")
+BASE_URL = os.getenv("BASE_URL", "https://ai-lead-pipeline-production-f255.up.railway.app")
 
 # ── Commands ──
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
