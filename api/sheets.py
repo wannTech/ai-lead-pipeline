@@ -12,10 +12,20 @@ SCOPES = [
 ]
 
 def get_sheets_service():
-    creds = Credentials.from_service_account_file(
-        os.getenv("GOOGLE_CREDENTIALS_PATH"),
-        scopes=SCOPES
-    )
+    import json
+    creds_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
+    
+    if creds_json:
+        # Production: baca dari environment variable
+        creds_info = json.loads(creds_json)
+        creds = Credentials.from_service_account_info(creds_info, scopes=SCOPES)
+    else:
+        # Local: baca dari file
+        creds = Credentials.from_service_account_file(
+            os.getenv("GOOGLE_CREDENTIALS_PATH"),
+            scopes=SCOPES
+        )
+    
     return build("sheets", "v4", credentials=creds)
 
 def save_leads_to_sheets(leads: list[dict], spreadsheet_id: str = None):
