@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+playwright
+python-dotenv
+groq
+google-auth
+google-auth-oauthlib
+google-api-python-client
+python-telegram-bot
+pandas
+requests
+aiohttp
+pydantic
