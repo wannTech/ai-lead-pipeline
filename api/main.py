@@ -39,8 +39,9 @@ async def run_scrape_job(job_id: str, keyword: str, location: str, max_results: 
         loop = asyncio.get_event_loop()
         
         def run_sync():
-            new_loop = asyncio.ProactorEventLoop()
-            asyncio.set_event_loop(new_loop)
+            import asyncio as _asyncio
+            new_loop = _asyncio.new_event_loop()
+            _asyncio.set_event_loop(new_loop)
             try:
                 return new_loop.run_until_complete(
                     scrape_google_maps(keyword, location, max_results)
