@@ -65,6 +65,9 @@ async def run_scrape_job(job_id: str, keyword: str, location: str, max_results: 
         jobs[job_id]["total"] = len(enriched)
 
     except Exception as e:
+        import traceback
+        print(f"❌ Job {job_id} error: {str(e)}")
+        print(traceback.format_exc())  # ← tambah ini
         jobs[job_id]["status"] = "error"
         jobs[job_id]["error"] = str(e)
 
